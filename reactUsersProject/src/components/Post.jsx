@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { API_URL } from "../functions.jsx/API_URL";
+import { API_URL } from "../functions/API_URL";
 import apiRequest from "./apiRequest";
 import Comments from "./Comments";
 
-export default function Post({ post, handleDeletePost, setError }) {
+export default function Post({ post, handledeleteItem, setError }) {
   const [title, setTitle] = useState(post.title);
   const [isEdited, setIsEdited] = useState(false);
   const [showBody, setShowBody] = useState(false);
@@ -53,7 +53,7 @@ export default function Post({ post, handleDeletePost, setError }) {
           Comments
         </button>
         <button onClick={() => setShowBody((prev) => !prev)}>Body</button>
-        <button onClick={() => handleDeletePost(post)}>delete</button>
+        <button onClick={() => handledeleteItem(post)}>delete</button>
       </div>
     </div>
   );

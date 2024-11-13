@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_URL } from "../functions.jsx/API_URL";
+import { API_URL } from "../functions/API_URL";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../components/apiRequest";
 

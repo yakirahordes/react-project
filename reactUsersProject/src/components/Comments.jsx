@@ -1,6 +1,8 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import apiRequest from "../components/apiRequest";
+import { API_URL } from "../functions/API_URL";
 import Comment from "./Comment";
+import { handleDelete } from "../functions/delete";
 
 export default function Comments({ postId }) {
   const [comments, setComments] = useState([]);
@@ -27,17 +29,20 @@ export default function Comments({ postId }) {
     (async () => await fetchCommentsData())();
   }, []);
 
-  async function handleDeleteComment(commentItem) {
-    const newCommentList = comments.filter(
-      (comment) => comment.id !== commentItem.id
-    );
-    setComments(newCommentList);
-    const deleteOption = {
-      method: "DELETE",
-    };
-    const url = `${API_URL}/comments/${commentItem.id}`;
-    const result = await apiRequest(url, deleteOption);
-    setError(result.errMsg);
+  // async function handleDeleteComment(commentItem) {
+  //   const newCommentList = comments.filter(
+  //     (comment) => comment.id !== commentItem.id
+  //   );
+  //   setComments(newCommentList);
+  //   const deleteOption = {
+  //     method: "DELETE",
+  //   };
+  //   const url = `${API_URL}/comments/${commentItem.id}`;
+  //   const result = await apiRequest(url, deleteOption);
+  //   setError(result.errMsg);
+  // }
+  function handledeleteItem(item) {
+    handleDelete(comments, item, setComments, "comments", setError);
   }
 
   async function addComment(e) {
@@ -72,7 +77,7 @@ export default function Comments({ postId }) {
             <Comment
               key={comment.id}
               comment={comment}
-              handleDeleteComment={handleDeleteComment}
+              handledeleteItem={handledeleteItem}
             />
           );
         })}

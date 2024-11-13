@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { API_URL } from "../functions.jsx/API_URL";
+import { API_URL } from "../functions/API_URL";
 import apiRequest from "../components/apiRequest";
 import Post from "../components/Post";
+import { handleDelete } from "../functions/delete";
 
 export default function Posts() {
   const [error, setError] = useState(null);
@@ -34,15 +35,8 @@ export default function Posts() {
     (async () => await fetchPostsData())();
   }, []);
 
-  async function handleDeletePost(postItem) {
-    const newPostList = posts.filter((post) => post.id !== postItem.id);
-    setPosts(newPostList);
-    const deleteOption = {
-      method: "DELETE",
-    };
-    const url = `${API_URL}/posts/${postItem.id}`;
-    const result = await apiRequest(url, deleteOption);
-    setError(result.errMsg);
+  function handledeleteItem(item) {
+    handleDelete(posts, item, setPosts, "posts", setError);
   }
 
   async function addPost(e) {
@@ -109,7 +103,7 @@ export default function Posts() {
                 <Post
                   key={post.id}
                   post={post}
-                  handleDeletePost={handleDeletePost}
+                  handledeleteItem={handledeleteItem}
                   setError={setError}
                 />
               );
@@ -119,7 +113,7 @@ export default function Posts() {
                 <Post
                   key={post.id + "b"}
                   post={post}
-                  handleDeletePost={handleDeletePost}
+                  handledeleteItem={handledeleteItem}
                   setError={setError}
                 />
               );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../functions.jsx/API_URL";
+import { API_URL } from "../functions/API_URL";
 
 export default function Info() {
   const [userData, setUserData] = useState({});

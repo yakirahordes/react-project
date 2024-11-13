@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../functions.jsx/API_URL";
+import { API_URL } from "../functions/API_URL";
 import Todo from "../components/Todo";
 import apiRequest from "../components/apiRequest";
+import { handleDelete } from "../functions/delete";
 
 export default function Todos() {
   const [error, setError] = useState(null);
@@ -18,7 +19,7 @@ export default function Todos() {
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
   useEffect(() => {
-    const fetchUsersData = async () => {
+    const fetchTodosData = async () => {
       try {
         const response = await fetch(`${API_URL}/todos?userId=${userId}`);
         if (!response.ok) throw Error("Did not receive expected data");
@@ -32,20 +33,15 @@ export default function Todos() {
         setError(err.message);
       }
     };
-    (async () => await fetchUsersData())();
+    (async () => await fetchTodosData())();
   }, []);
 
-  async function handleDeleteTodo(item) {
-    console.log("API_URL: ", API_URL);
-    const newTodosList = todosList.filter((todo) => todo.id !== item.id);
-    setTodosList(newTodosList);
-    const deleteOption = {
-      method: "DELETE",
-    };
-    const url = `${API_URL}/todos/${item.id}`;
-    const result = await apiRequest(url, deleteOption);
-    setError(result.errMsg);
+  function deleteItem(item) {
+    handleDelete(todosList, item, setTodosList, "todos", setError);
   }
+
+  console.log("todosList: ", todosList);
+
   async function addTodo(e) {
     e.preventDefault();
     const randonId = Math.floor(Math.random() * (1000000 - 200)) + 200;
@@ -108,7 +104,7 @@ export default function Todos() {
                 <Todo
                   key={item.id}
                   item={item}
-                  handleDeleteTodo={handleDeleteTodo}
+                  deleteItem={deleteItem}
                   setError={setError}
                 />
               );
@@ -118,7 +114,7 @@ export default function Todos() {
                 <Todo
                   key={item.id + "b"}
                   item={item}
-                  handleDeleteTodo={handleDeleteTodo}
+                  deleteItem={deleteItem}
                   setError={setError}
                 />
               );

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Comment({ comment, handleDeleteComment }) {
+export default function Comment({ comment, handledeleteItem }) {
   return (
     <div className="comment-div" key={comment.id}>
       <div className="comment-data">
@@ -18,7 +18,7 @@ export default function Comment({ comment, handleDeleteComment }) {
       </div>
 
       <div className="comment-buttons">
-        <button onClick={() => handleDeleteComment(comment)}>delete</button>
+        <button onClick={() => handledeleteItem(comment)}>delete</button>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import { API_URL } from "../functions.jsx/API_URL";
+import { API_URL } from "../functions/API_URL";
 import apiRequest from "./apiRequest";
 
-export default function Todo({ item, handleDeleteTodo, setError }) {
+export default function Todo({ item, deleteItem, setError }) {
   const [isChecked, setIsChecked] = useState(item.completed);
   const [title, setTitle] = useState(item.title);
   const [isEdited, setIsEdited] = useState(false);
@@ -54,7 +54,7 @@ export default function Todo({ item, handleDeleteTodo, setError }) {
         ) : (
           <button onClick={handleSaveChanges}>save</button>
         )}
-        <button onClick={() => handleDeleteTodo(item)}>delete</button>
+        <button onClick={() => deleteItem(item)}>delete</button>
       </div>
     </div>
   );
