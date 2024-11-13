@@ -1,18 +1,19 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UrlContext } from "../context/API_URL";
+import { API_URL } from "../functions.jsx/API_URL";
 import Todo from "../components/Todo";
 import apiRequest from "../components/apiRequest";
 
 export default function Todos() {
-  const [userData, setUserData] = useState({});
   const [error, setError] = useState(null);
   const [todosList, setTodosList] = useState([]);
   const [add, setAdd] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  const [search, setSearch] = useState({isSearched: false, searchedTodos: []});
-  const API_URL = useContext(UrlContext);
+  const [search, setSearch] = useState({
+    isSearched: false,
+    searchedTodos: [],
+  });
   const navigate = useNavigate();
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
@@ -35,6 +36,7 @@ export default function Todos() {
   }, []);
 
   async function handleDeleteTodo(item) {
+    console.log("API_URL: ", API_URL);
     const newTodosList = todosList.filter((todo) => todo.id !== item.id);
     setTodosList(newTodosList);
     const deleteOption = {
@@ -46,9 +48,9 @@ export default function Todos() {
   }
   async function addTodo(e) {
     e.preventDefault();
-    const randonId = Math.floor(Math.random() * (1000000 - 200)) + min;
+    const randonId = Math.floor(Math.random() * (1000000 - 200)) + 200;
     const newTodo = {
-      id: randonId,
+      id: randonId.toString(),
       userId: userId,
       title: newTitle,
       completed: false,
@@ -65,53 +67,62 @@ export default function Todos() {
     setAdd(false);
   }
   function handleSearch(e) {
-    setSearch(todosList)
+    setSearch(todosList);
     e.preventDefault();
-    if(searchInput !== ''){
-      let searched = todosList.filter(
-        todo => todo.title.trim().toLowerCase().includes(searchInput.trim().toLowerCase()))
-      if(searched.length === 0){
-        searched = todosList.filter(todo =>
-          todo.title === searchInput)
+    if (searchInput !== "") {
+      let searched = todosList.filter((todo) =>
+        todo.title
+          .trim()
+          .toLowerCase()
+          .includes(searchInput.trim().toLowerCase())
+      );
+      if (searched.length === 0) {
+        searched = todosList.filter((todo) => todo.title === searchInput);
       }
-      setSearch({isSearched: true, searchedTodos: searched});
+      setSearch({ isSearched: true, searchedTodos: searched });
     }
-    // const regex = new RegExp(searchInput, 'i');
-    // const searchedTodos = todosList.filter(todo => regex.test(todo.title))
-    // setTodosList(searchedTodos)
   }
+
   return (
     <>
       {error !== null && <p>{error}</p>}
-      <button onClick={() => setAdd(prev => !prev)}>add</button>
+      <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
-          <label>title:</label><br/>
-          <input onChange={(e) => setNewTitle(e.target.value)}></input><br/>
+          <label>title:</label>
+          <br />
+          <input onChange={(e) => setNewTitle(e.target.value)}></input>
+          <br />
           <button onClick={addTodo}>save</button>
         </form>
       )}
-      <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)}/>
+      <input
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+      />
       <button onClick={handleSearch}>search</button>
       <main className="todos-container">
-        {!search.isSearched ? todosList.map((item) => {
-          return (
-            <Todo
-              key={item.id}
-              item={item}
-              handleDeleteTodo={handleDeleteTodo}
-              setError={setError}
-            />
-          );
-        }) : search.searchedTodos.map((item) => {
-          return (
-            <Todo
-              key={item.id + 'b'}
-              item={item}
-              handleDeleteTodo={handleDeleteTodo}
-              setError={setError}
-            />
-          )})}
+        {!search.isSearched
+          ? todosList.map((item) => {
+              return (
+                <Todo
+                  key={item.id}
+                  item={item}
+                  handleDeleteTodo={handleDeleteTodo}
+                  setError={setError}
+                />
+              );
+            })
+          : search.searchedTodos.map((item) => {
+              return (
+                <Todo
+                  key={item.id + "b"}
+                  item={item}
+                  handleDeleteTodo={handleDeleteTodo}
+                  setError={setError}
+                />
+              );
+            })}
       </main>
     </>
   );

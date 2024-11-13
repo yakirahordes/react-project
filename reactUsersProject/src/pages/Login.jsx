@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UrlContext } from "../context/API_URL";
+import React, { useState, useEffect } from "react";
+import { API_URL } from "../functions.jsx/API_URL";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function Login() {
@@ -7,7 +7,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [usersData, setUsersData] = useState([]);
   const [error, setError] = useState(null);
-  const API_URL = useContext(UrlContext);
   const userId = useParams();
   const navigate = useNavigate();
 

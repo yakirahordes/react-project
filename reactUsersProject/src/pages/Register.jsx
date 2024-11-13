@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UrlContext } from "../context/API_URL";
+import React, { useState, useEffect } from "react";
+import { API_URL } from "../functions.jsx/API_URL";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../components/apiRequest";
 
@@ -9,7 +9,6 @@ export default function Register() {
   const [verifyPassword, setVerifyPassword] = useState("");
   const [usersData, setUsersData] = useState([]);
   const [error, setError] = useState(null);
-  const API_URL = useContext(UrlContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,7 +44,7 @@ export default function Register() {
       );
       if (currentUser.length === 0) {
         const newUser = {
-          id: randomNum,
+          id: randomNum.toString(),
           username: username,
           website: password,
         };
@@ -58,7 +57,10 @@ export default function Register() {
         const result = await apiRequest(`${API_URL}/users`, postOption);
         setError(result.errMsg);
         if (result.data) {
-          localStorage.setItem("currentUserId", JSON.stringify(result.data.id));
+          localStorage.setItem(
+            "currentUserId",
+            JSON.stringify(result.data.id.toString())
+          );
           return true;
         } else {
           return false;

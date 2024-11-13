@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
-import { UrlContext } from "../context/API_URL";
+import React, { useEffect, useState } from "react";
+import { API_URL } from "../functions.jsx/API_URL";
 import apiRequest from "../components/apiRequest";
 import Post from "../components/Post";
 
@@ -9,7 +9,11 @@ export default function Posts() {
   const [add, setAdd] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
-  const API_URL = useContext(UrlContext);
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState({
+    isSearched: false,
+    searchedPosts: [],
+  });
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
   useEffect(() => {
@@ -63,6 +67,23 @@ export default function Posts() {
 
   const randomNum = Math.floor(Math.random(1000000 - 100 + 1) + 100);
 
+  function handleSearch(e) {
+    setSearch(posts);
+    e.preventDefault();
+    if (searchInput !== "") {
+      let searched = posts.filter((post) =>
+        post.title
+          .trim()
+          .toLowerCase()
+          .includes(searchInput.trim().toLowerCase())
+      );
+      if (searched.length === 0) {
+        searched = posts.filter((post) => post.title === searchInput);
+      }
+      setSearch({ isSearched: true, searchedPosts: searched });
+    }
+  }
+
   return (
     <>
       {error !== null && <p>{error}</p>}
@@ -76,17 +97,33 @@ export default function Posts() {
           <button onClick={addPost}>save</button>
         </form>
       )}
+      <input
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+      />
+      <button onClick={handleSearch}>search</button>
       <main className="posts-container">
-        {posts.map((post) => {
-          return (
-            <Post
-              key={post.id}
-              post={post}
-              handleDeletePost={handleDeletePost}
-              setError={setError}
-            />
-          );
-        })}
+        {!search.isSearched
+          ? posts.map((post) => {
+              return (
+                <Post
+                  key={post.id}
+                  post={post}
+                  handleDeletePost={handleDeletePost}
+                  setError={setError}
+                />
+              );
+            })
+          : search.searchedPosts.map((post) => {
+              return (
+                <Post
+                  key={post.id + "b"}
+                  post={post}
+                  handleDeletePost={handleDeletePost}
+                  setError={setError}
+                />
+              );
+            })}
       </main>
     </>
   );
