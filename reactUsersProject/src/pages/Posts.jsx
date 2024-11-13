@@ -80,6 +80,7 @@ export default function Posts() {
 
   return (
     <>
+      <h1>Posts</h1>
       {error !== null && <p>{error}</p>}
       <button onClick={() => setAdd(true)}>add</button>
       {add && (
@@ -99,25 +100,25 @@ export default function Posts() {
       <main className="posts-container">
         {!search.isSearched
           ? posts.map((post) => {
-              return (
-                <Post
-                  key={post.id}
-                  post={post}
-                  handledeleteItem={handledeleteItem}
-                  setError={setError}
-                />
-              );
-            })
+            return (
+              <Post
+                key={post.id}
+                post={post}
+                handledeleteItem={handledeleteItem}
+                setError={setError}
+              />
+            );
+          })
           : search.searchedPosts.map((post) => {
-              return (
-                <Post
-                  key={post.id + "b"}
-                  post={post}
-                  handledeleteItem={handledeleteItem}
-                  setError={setError}
-                />
-              );
-            })}
+            return (
+              <Post
+                key={post.id + "b"}
+                post={post}
+                handledeleteItem={handledeleteItem}
+                setError={setError}
+              />
+            );
+          })}
       </main>
     </>
   );

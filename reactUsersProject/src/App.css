@@ -59,7 +59,7 @@
 .photo-div{
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 50px;
   height: auto;
 }
 .photos-container{
@@ -93,4 +93,11 @@
   background-color: rgb(144, 136, 136);
   width: 30vw;
   margin-top: 10px;
+}
+.album-data{
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+}
+.delete-photo-button{
+  font-size: 12px;
 }

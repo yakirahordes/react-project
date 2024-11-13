@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { UrlContext } from '../context/API_URL';
-import Album from './Album';
+import { API_URL } from "../functions/API_URL";
+import apiRequest from "../components/apiRequest";
+import { handleDelete } from "../functions/delete";
 import Photo from './Photo';
-import apiRequest from './apiRequest';
+
 
 export default function Photos({ albumId }) {
     const [photos, setPhotos] = useState([]);
@@ -11,7 +12,6 @@ export default function Photos({ albumId }) {
     const [add, setAdd] = useState(false);
     const [newTitle, setNewTitle] = useState('');
     const [startIndex, setStartIndex] = useState(0)
-    const API_URL = useContext(UrlContext);
     useEffect(() => {
         (async () => await fetchPhotosData())();
     }, []);
@@ -42,17 +42,8 @@ export default function Photos({ albumId }) {
         }
     };
     async function handleDeletePhoto(photoItem) {
-        const newPhotosList = photos.filter(
-            (photo) => photo.id !== photoItem.id
-        );
-        console.log(photoItem.id)
-        setPhotos(newPhotosList);
-        const deleteOption = {
-            method: "DELETE",
-        };
-        const url = `${API_URL}/photos/${photoItem.id}`;
-        const result = await apiRequest(url, deleteOption);
-        setError(result.errMsg);
+        handleDelete(photos, photoItem, setPhotos, "photos", setError)
+        console.log(photoItem)    
     }
 
     async function addPhoto(e) {
@@ -103,8 +94,8 @@ export default function Photos({ albumId }) {
                         />
                     );
                 })}
-                <button onClick={fetchPhotosData}>show more</button>
             </main>
+            <button onClick={fetchPhotosData}>show more</button>
         </>
     )
 }

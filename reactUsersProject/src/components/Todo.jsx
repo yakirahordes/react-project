@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { API_URL } from "../functions/API_URL";
 import apiRequest from "./apiRequest";
 

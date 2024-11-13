@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react'
-import { UrlContext } from '../context/API_URL';
+import React, { useState } from 'react'
 import Photos from './Photos';
 export default function Album({ album, handleDeleteAlbum, setError }) {
     const [showPhotos, setShowPhotos] = useState(false);
-    const API_URL = useContext(UrlContext);
 
     return (
         <div className="album-data">
