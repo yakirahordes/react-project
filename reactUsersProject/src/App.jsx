@@ -9,28 +9,25 @@ import Posts from "./pages/Posts";
 import Todos from "./pages/Todos";
 import Info from "./pages/Info";
 import Details from "./pages/Details";
-import { UrlProvider } from "./context/API_URL";
 
 function App() {
   return (
     <>
-      <UrlProvider>
-        <Router>
-          <Routes>
-            <Route path="/">
-              <Route index element={<Login />} />
-              <Route path="register" element={<Register />} />
-              <Route path="details" element={<Details />} />
-              <Route path="home/:id/" element={<HomeLayout />}>
-                <Route path="albums" element={<Albums />} />
-                <Route path="posts" element={<Posts />} />
-                <Route path="todos" element={<Todos />} />
-                <Route path="info" element={<Info />} />
-              </Route>
+      <Router>
+        <Routes>
+          <Route path="/">
+            <Route index element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="details" element={<Details />} />
+            <Route path="home/:id/" element={<HomeLayout />}>
+              <Route path="albums" element={<Albums />} />
+              <Route path="posts" element={<Posts />} />
+              <Route path="todos" element={<Todos />} />
+              <Route path="info" element={<Info />} />
             </Route>
-          </Routes>
-        </Router>
-      </UrlProvider>
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 }

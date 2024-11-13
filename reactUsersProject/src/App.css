@@ -41,19 +41,38 @@
   color: #888;
 }
 
-.todos-container{
+.todos-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
 }
-.todo-div{
+.todo-div {
   background-color: whitesmoke;
   width: 30vw;
   margin-top: 10px;
 }
-.home-body{
+.home-body {
   margin-top: 20px;
   min-height: 80vh;
   width: 100vw;
+}
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.post-div {
+  background-color: whitesmoke;
+  width: 30vw;
+  margin-top: 10px;
+}
+.comments-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.comment-div {
+  background-color: rgb(144, 136, 136);
+  width: 30vw;
+  margin-top: 10px;
 }

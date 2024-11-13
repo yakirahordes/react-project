@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { UrlContext } from "../context/API_URL";
+import { API_URL } from "../functions.jsx/API_URL";
 import apiRequest from "./apiRequest";
 import Comments from "./Comments";
 
@@ -8,7 +8,6 @@ export default function Post({ post, handleDeletePost, setError }) {
   const [isEdited, setIsEdited] = useState(false);
   const [showBody, setShowBody] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const API_URL = useContext(UrlContext);
 
   async function handleSaveChanges() {
     const url = `${API_URL}/posts/${post.id}`;
@@ -28,17 +27,16 @@ export default function Post({ post, handleDeletePost, setError }) {
 
   return (
     <div className="post-div" key={post.id}>
-      <div className="post-data">
-        <span>{post.id}</span>
-        <br />
-        {isEdited ? (
-          <input value={title} onChange={(e) => setTitle(e.target.value)} />
-        ) : (
-          <label>{title}</label>
-        )}
-        <br />
-        <span>{showBody ? post.body : null}</span>
-      </div>
+      <span>{post.id}</span>
+      <br />
+      {isEdited ? (
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      ) : (
+        <label>{title}</label>
+      )}
+      <br />
+      <span>{showBody ? post.body : null}</span>
+
       {showComments ? (
         <div className="post-comments">
           <Comments postId={post.id} />

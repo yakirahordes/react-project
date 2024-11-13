@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import { UrlContext } from "../context/API_URL";
 import apiRequest from "../components/apiRequest";
 import Comment from "./Comment";
 
@@ -8,8 +7,7 @@ export default function Comments({ postId }) {
   const [error, setError] = useState(null);
   const [add, setAdd] = useState(false);
   const [newBody, setNewBody] = useState("");
-  const [commentingUserId, setCommentingUserId] = useState();
-  const API_URL = useContext(UrlContext);
+  const [commentingUsername, setCommentingUsername] = useState();
 
   useEffect(() => {
     const fetchCommentsData = async () => {
@@ -31,9 +29,9 @@ export default function Comments({ postId }) {
 
   async function handleDeleteComment(commentItem) {
     const newCommentList = comments.filter(
-      (comment) => comment.id !== comentItem.id
+      (comment) => comment.id !== commentItem.id
     );
-    setPosts(newCommentList);
+    setComments(newCommentList);
     const deleteOption = {
       method: "DELETE",
     };
@@ -46,8 +44,8 @@ export default function Comments({ postId }) {
     e.preventDefault();
     const newComment = {
       postId: postId,
-      id: randomNum,
-      commentingUserId: commentingUserId,
+      id: randomNum.toString(),
+      name: commentingUsername,
       body: newBody,
     };
 
@@ -67,28 +65,30 @@ export default function Comments({ postId }) {
   return (
     <>
       {error !== null && <p>{error}</p>}
-      <button onClick={() => setAdd(true)}>add</button>
-      {add && (
-        <form>
-          <label>Commenting user id:</label>
-          <input onChange={(e) => setCommentingUserId(e.target.value)}></input>
-          <label>Body:</label>
-          <input onChange={(e) => setNewBody(e.target.value)}></input>
-          <button onClick={addComment}>save</button>
-        </form>
-      )}
+
       <main className="comments-container">
         {comments.map((comment) => {
           return (
             <Comment
               key={comment.id}
-              post={comment}
+              comment={comment}
               handleDeleteComment={handleDeleteComment}
-              setError={setError}
             />
           );
         })}
       </main>
+      <button onClick={() => setAdd(true)}>add</button>
+      {add && (
+        <form>
+          <label>Commenting user name:</label>
+          <input
+            onChange={(e) => setCommentingUsername(e.target.value)}
+          ></input>
+          <label>Body:</label>
+          <input onChange={(e) => setNewBody(e.target.value)}></input>
+          <button onClick={addComment}>save</button>
+        </form>
+      )}
     </>
   );
 }
