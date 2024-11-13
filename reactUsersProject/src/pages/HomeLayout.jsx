@@ -1,6 +1,31 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 export default function HomeLayout() {
-  return (<><div>HomeLayout</div><Outlet/></>);
+  function handleDeleteLS() {
+    localStorage.clear();
+  }
+  return (
+    <>
+      <nav className="navbar">
+        <Link to="info">
+          <button>Info</button>
+        </Link>
+        <Link to="todos">
+          <button>Todos</button>
+        </Link>
+        <Link to="posts">
+          <button>Posts</button>
+        </Link>
+        <Link to="albums">
+          <button>Albums</button>
+        </Link>
+        <Link to="/" replace>
+          <button onClick={handleDeleteLS}>Logout</button>
+        </Link>
+      </nav>
+
+      <Outlet />
+    </>
+  );
 }
