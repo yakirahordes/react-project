@@ -4,6 +4,7 @@ import { API_URL } from "../functions/API_URL";
 import Todo from "../components/Todo";
 import apiRequest from "../components/apiRequest";
 import { handleDelete } from "../functions/delete";
+import { fetchData } from "../functions/fetchdata";
 
 export default function Todos() {
   const [error, setError] = useState(null);
@@ -19,21 +20,13 @@ export default function Todos() {
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
   useEffect(() => {
-    const fetchTodosData = async () => {
-      try {
-        const response = await fetch(`${API_URL}/todos?userId=${userId}`);
-        if (!response.ok) throw Error("Did not receive expected data");
-        const data = await response.json();
-        if (data.length === 0) setError("you have no todos yet");
-        else {
-          setTodosList(data);
-          setError(null);
-        }
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    (async () => await fetchTodosData())();
+    (async () =>
+      await fetchData(
+        `todos?userId=${userId}`,
+        "todos",
+        setTodosList,
+        setError
+      ))();
   }, []);
 
   function deleteItem(item) {
@@ -47,7 +40,7 @@ export default function Todos() {
     const randonId = Math.floor(Math.random() * (1000000 - 200)) + 200;
     const newTodo = {
       id: randonId.toString(),
-      userId: userId,
+      userId: parseInt(userId),
       title: newTitle,
       completed: false,
     };

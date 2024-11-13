@@ -1,32 +1,24 @@
-import React, { useEffect, useContext, useState } from "react";
-import { UrlContext } from "../context/API_URL";
-import apiRequest from "../components/apiRequest"; import Album from "../components/Album";
+import React, { useEffect, useState } from "react";
+import apiRequest from "../components/apiRequest";
+import Album from "../components/Album";
+import { fetchData } from "../functions/fetchdata";
+import { API_URL } from "../functions/API_URL";
 
 export default function Albums() {
   const [error, setError] = useState(null);
   const [albums, setAlbums] = useState([]);
   const [add, setAdd] = useState(false);
   const [newTitle, setNewTitle] = useState("");
-  const [newBody, setNewBody] = useState("");
-  const API_URL = useContext(UrlContext);
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
   useEffect(() => {
-    const fetchAlbumsData = async () => {
-      try {
-        const response = await fetch(`${API_URL}/albums?userId=${userId}`);
-        if (!response.ok) throw Error("Did not receive expected data");
-        const data = await response.json();
-        if (data.length === 0) setError("You have no posts");
-        else {
-          setAlbums(data);
-          setError(null);
-        }
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    (async () => await fetchAlbumsData())();
+    (async () =>
+      await fetchData(
+        `albums?userId=${userId}`,
+        "albums",
+        setAlbums,
+        setError
+      ))();
   }, []);
 
   async function handleDeleteAlbum(albumItem) {
@@ -58,13 +50,12 @@ export default function Albums() {
     setAdd(false);
   }
 
-  const randomNum = (Math.random(1000000 - 100 + 1) + 100);
-
+  const randomNum = Math.floor(Math.random() * (1000000 - 100 + 1) + 100);
 
   return (
     <>
       {error !== null && <p>{error}</p>}
-      <button onClick={() => setAdd(prev => !prev)}>add</button>
+      <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
           <label>Title:</label>
@@ -74,7 +65,6 @@ export default function Albums() {
       )}
       <main className="posts-container">
         {albums.map((album) => {
-
           return (
             <Album
               key={album.id + "num"}

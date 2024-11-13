@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../functions/API_URL";
 import { useNavigate, useParams } from "react-router-dom";
+import { fetchData } from "../functions/fetchdata";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -11,18 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUsersData = async () => {
-      try {
-        const response = await fetch(`${API_URL}/users`);
-        if (!response.ok) throw Error("Did not receive expected data");
-        const data = await response.json();
-        setUsersData(data);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    (async () => await fetchUsersData())();
+    (async () => await fetchData(`users`, "data", setUsersData, setError))();
   }, []);
 
   function handleSubmit(e) {
