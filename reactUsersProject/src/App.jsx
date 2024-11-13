@@ -8,6 +8,7 @@ import Albums from "./pages/Albums";
 import Posts from "./pages/Posts";
 import Todos from "./pages/Todos";
 import Info from "./pages/Info";
+import Details from "./pages/Details";
 import { UrlProvider } from "./context/API_URL";
 
 function App() {

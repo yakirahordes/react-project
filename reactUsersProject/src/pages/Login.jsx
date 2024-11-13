@@ -50,7 +50,7 @@ export default function Login() {
       <label>Password:</label>
       <input value={password} onChange={(e) => setPassword(e.target.value)} />
       <button>Submit</button>
-      <button onClick={() => navigate("/register")}>Register</button>
+      <button onClick={() => navigate("/register", {replace: true})}>Register</button>
       <p>{error}</p>
     </form>
   );
