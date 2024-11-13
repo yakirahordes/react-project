@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UrlContext } from "../context/API_URL";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -8,6 +8,7 @@ export default function Login() {
   const [usersData, setUsersData] = useState([]);
   const [error, setError] = useState(null);
   const API_URL = useContext(UrlContext);
+  const userId = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function Login() {
     e.preventDefault();
     const currentUser = checkUserData();
     if (currentUser) {
-      navigate("/home");
+      navigate(`/home/${currentUser.id}`);
     } else {
       setError("this user does not exist");
     }
@@ -39,7 +40,10 @@ export default function Login() {
     const currentUser = usersData.filter(
       (user) => user.username === username && user.website === password
     )[0];
-    localStorage.setItem("currentUserId", JSON.stringify(currentUser.id));
+    localStorage.setItem(
+      "currentUserId",
+      JSON.stringify(currentUser?.id) || null
+    );
     return currentUser;
   }
 
@@ -61,7 +65,9 @@ export default function Login() {
       <label>Password:</label>
       <input value={password} onChange={(e) => setPassword(e.target.value)} />
       <button>Submit</button>
-      <button onClick={() => navigate("/register", {replace: true})}>Register</button>
+      <button onClick={() => navigate("/register", { replace: true })}>
+        Register
+      </button>
       <p>{error}</p>
     </form>
   );

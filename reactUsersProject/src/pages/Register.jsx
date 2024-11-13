@@ -45,6 +45,7 @@ export default function Register() {
       );
       if (currentUser.length === 0) {
         const newUser = {
+          id: randomNum,
           username: username,
           website: password,
         };
@@ -68,6 +69,8 @@ export default function Register() {
       }
     }
   }
+
+  const randomNum = Math.floor(Math.random() * 5000);
 
   return (
     <form onSubmit={handleSubmit}>
