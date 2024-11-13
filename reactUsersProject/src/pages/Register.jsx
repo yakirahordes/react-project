@@ -31,7 +31,7 @@ export default function Register() {
     e.preventDefault();
     let isExists = await isExist();
     if (isExists !== null) {
-      navigate("/home");
+      navigate("/details");
     }
   }
 
@@ -43,8 +43,6 @@ export default function Register() {
       const currentUser = usersData.filter(
         (user) => user.username === username
       );
-      console.log("currentUser: ", currentUser);
-
       if (currentUser.length === 0) {
         const newUser = {
           username: username,
