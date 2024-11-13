@@ -10,6 +10,8 @@ export default function Todos() {
   const [todosList, setTodosList] = useState([]);
   const [add, setAdd] = useState(false);
   const [newTitle, setNewTitle] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState({isSearched: false, searchedTodos: []});
   const API_URL = useContext(UrlContext);
   const navigate = useNavigate();
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
@@ -44,7 +46,9 @@ export default function Todos() {
   }
   async function addTodo(e) {
     e.preventDefault();
+    const randonId = Math.floor(Math.random() * (1000000 - 200)) + min;
     const newTodo = {
+      id: randonId,
       userId: userId,
       title: newTitle,
       completed: false,
@@ -60,20 +64,37 @@ export default function Todos() {
     setTodosList((prev) => [...prev, result.data]);
     setAdd(false);
   }
-
+  function handleSearch(e) {
+    setSearch(todosList)
+    e.preventDefault();
+    if(searchInput !== ''){
+      let searched = todosList.filter(
+        todo => todo.title.trim().toLowerCase().includes(searchInput.trim().toLowerCase()))
+      if(searched.length === 0){
+        searched = todosList.filter(todo =>
+          todo.title === searchInput)
+      }
+      setSearch({isSearched: true, searchedTodos: searched});
+    }
+    // const regex = new RegExp(searchInput, 'i');
+    // const searchedTodos = todosList.filter(todo => regex.test(todo.title))
+    // setTodosList(searchedTodos)
+  }
   return (
     <>
       {error !== null && <p>{error}</p>}
-      <button onClick={() => setAdd(true)}>add</button>
+      <button onClick={() => setAdd(prev => !prev)}>add</button>
       {add && (
         <form>
-          <label>title:</label>
-          <input onChange={(e) => setNewTitle(e.target.value)}></input>
+          <label>title:</label><br/>
+          <input onChange={(e) => setNewTitle(e.target.value)}></input><br/>
           <button onClick={addTodo}>save</button>
         </form>
       )}
+      <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)}/>
+      <button onClick={handleSearch}>search</button>
       <main className="todos-container">
-        {todosList.map((item) => {
+        {!search.isSearched ? todosList.map((item) => {
           return (
             <Todo
               key={item.id}
@@ -82,7 +103,15 @@ export default function Todos() {
               setError={setError}
             />
           );
-        })}
+        }) : search.searchedTodos.map((item) => {
+          return (
+            <Todo
+              key={item.id + 'b'}
+              item={item}
+              handleDeleteTodo={handleDeleteTodo}
+              setError={setError}
+            />
+          )})}
       </main>
     </>
   );
