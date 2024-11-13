@@ -49,6 +49,7 @@ export default function Details() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Details</h1>
       <label>name:</label>
       <input value={name} onChange={(e) => setName(e.target.value)} />
       <label>email:</label>

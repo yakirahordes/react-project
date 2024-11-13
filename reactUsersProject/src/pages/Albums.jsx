@@ -3,6 +3,7 @@ import apiRequest from "../components/apiRequest";
 import Album from "../components/Album";
 import { fetchData } from "../functions/fetchdata";
 import { API_URL } from "../functions/API_URL";
+import { handleDelete } from "../functions/delete";
 
 export default function Albums() {
   const [error, setError] = useState(null);
@@ -21,15 +22,8 @@ export default function Albums() {
       ))();
   }, []);
 
-  async function handleDeleteAlbum(albumItem) {
-    const newAlbumsList = albums.filter((album) => album.id !== albumItem.id);
-    setAlbums(newAlbumsList);
-    const deleteOption = {
-      method: "DELETE",
-    };
-    const url = `${API_URL}/albums/${albumItem.id}`;
-    const result = await apiRequest(url, deleteOption);
-    setError(result.errMsg);
+  function handleDeleteAlbum(albumItem) {
+    handleDelete(albums, albumItem, setAlbums, "albums", setError);
   }
   async function addAlbum(e) {
     e.preventDefault();
@@ -54,6 +48,7 @@ export default function Albums() {
 
   return (
     <>
+      <h1>Albums</h1>
       {error !== null && <p>{error}</p>}
       <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
@@ -63,7 +58,7 @@ export default function Albums() {
           <button onClick={addAlbum}>save</button>
         </form>
       )}
-      <main className="posts-container">
+      <main className="albums-container">
         {albums.map((album) => {
           return (
             <Album

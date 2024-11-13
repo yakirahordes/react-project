@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Photos from "./Photos";
-
 export default function Album({ album, handleDeleteAlbum, setError }) {
   const [showPhotos, setShowPhotos] = useState(false);
 

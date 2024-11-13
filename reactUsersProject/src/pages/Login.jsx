@@ -49,6 +49,7 @@ export default function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Login</h1>
       <label>Username:</label>
       <input value={username} onChange={(e) => setUsername(e.target.value)} />
       <label>Password:</label>

@@ -74,6 +74,7 @@ export default function Todos() {
 
   return (
     <>
+      <h1>Todos</h1>
       {error !== null && <p>{error}</p>}
       <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
@@ -93,25 +94,25 @@ export default function Todos() {
       <main className="todos-container">
         {!search.isSearched
           ? todosList.map((item) => {
-              return (
-                <Todo
-                  key={item.id}
-                  item={item}
-                  deleteItem={deleteItem}
-                  setError={setError}
-                />
-              );
-            })
+            return (
+              <Todo
+                key={item.id}
+                item={item}
+                deleteItem={deleteItem}
+                setError={setError}
+              />
+            );
+          })
           : search.searchedTodos.map((item) => {
-              return (
-                <Todo
-                  key={item.id + "b"}
-                  item={item}
-                  deleteItem={deleteItem}
-                  setError={setError}
-                />
-              );
-            })}
+            return (
+              <Todo
+                key={item.id + "b"}
+                item={item}
+                deleteItem={deleteItem}
+                setError={setError}
+              />
+            );
+          })}
       </main>
     </>
   );
