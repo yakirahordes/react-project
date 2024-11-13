@@ -4,7 +4,6 @@ import apiRequest from "../components/apiRequest";
 import Post from "../components/Post";
 
 export default function Posts() {
-  const [userData, setUserData] = useState({});
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
   const [add, setAdd] = useState(false);
@@ -62,7 +61,7 @@ export default function Posts() {
     setAdd(false);
   }
 
-  const randomNum = Math.floor(Math.random() * 5000);
+  const randomNum = Math.floor(Math.random(1000000 - 100 + 1) + 100);
 
   return (
     <>

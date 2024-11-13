@@ -62,12 +62,12 @@ export default function Comments({ postId }) {
     setAdd(false);
   }
 
-  const randomNum = Math.floor(Math.random() * 4001);
+  const randomNum = Math.floor(Math.random(1000000 - 500 + 1) -500);
 
   return (
     <>
       {error !== null && <p>{error}</p>}
-      <button onClick={() => setAdd(true)}>add</button>
+      <button onClick={() => setAdd(prev => !prev)}>add</button>
       {add && (
         <form>
           <label>Commenting user id:</label>
