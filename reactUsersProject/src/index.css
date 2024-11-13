@@ -66,3 +66,35 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Style for the navbar */
+.navbar {
+  position: absolute; /* Position the navbar absolutely on the page */
+  top: 0; /* Place the navbar at the top of the page */
+  left: 0; /* Align the navbar to the left */
+  width: 100%; /* Make the navbar span the full width of the page */
+  display: flex;
+  justify-content: space-evenly; /* Spread out the buttons evenly */
+  align-items: center; /* Vertically center the items */
+  background-color: #2c3e50; /* Dark background color for the navbar */
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow to make the navbar stand out */
+  z-index: 1000; /* Ensure the navbar stays above other content */
+  font-family: "Arial", sans-serif; /* Set a nice sans-serif font */
+}
+
+/* Style for each button */
+.navbar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3498db; /* Blue background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.navbar button:hover {
+  background-color: #2980b9;
+}

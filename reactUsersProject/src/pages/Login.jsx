@@ -43,6 +43,17 @@ export default function Login() {
     return currentUser;
   }
 
+  useEffect(() => {
+    const handlePopState = (e) => {
+      window.history.pushState(null, document.title, window.location.href);
+    };
+    window.history.pushState(null, document.title, window.location.href);
+    window.onpopstate = handlePopState;
+    return () => {
+      window.onpopstate = null;
+    };
+  });
+
   return (
     <form onSubmit={handleSubmit}>
       <label>Username:</label>

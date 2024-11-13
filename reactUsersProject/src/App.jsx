@@ -8,6 +8,7 @@ import Albums from "./pages/Albums";
 import Posts from "./pages/Posts";
 import Todos from "./pages/Todos";
 import Info from "./pages/Info";
+import Details from "./pages/Details";
 import { UrlProvider } from "./context/API_URL";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
             <Route path="/">
               <Route index element={<Login />} />
               <Route path="register" element={<Register />} />
-              <Route path="details" element={<Details/>}/>
+              <Route path="details" element={<Details />} />
               <Route path="home/" element={<HomeLayout />}>
                 <Route path="albums" element={<Albums />} />
                 <Route path="posts" element={<Posts />} />
