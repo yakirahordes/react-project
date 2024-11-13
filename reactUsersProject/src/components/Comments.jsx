@@ -65,12 +65,21 @@ export default function Comments({ postId }) {
     setAdd(false);
   }
 
-  const randomNum = Math.floor(Math.random() * 4001);
+  const randomNum = Math.floor(Math.random(1000000 - 500 + 1) -500);
 
   return (
     <>
       {error !== null && <p>{error}</p>}
-
+      <button onClick={() => setAdd(prev => !prev)}>add</button>
+      {add && (
+        <form>
+          <label>Commenting user id:</label>
+          <input onChange={(e) => setCommentingUserId(e.target.value)}></input>
+          <label>Body:</label>
+          <input onChange={(e) => setNewBody(e.target.value)}></input>
+          <button onClick={addComment}>save</button>
+        </form>
+      )}
       <main className="comments-container">
         {comments.map((comment) => {
           return (

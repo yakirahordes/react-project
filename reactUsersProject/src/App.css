@@ -56,6 +56,24 @@
   min-height: 80vh;
   width: 100vw;
 }
+.photo-div{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: auto;
+}
+.photos-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 500px;
+}
+.album-photos{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .posts-container {
   display: flex;
   flex-wrap: wrap;

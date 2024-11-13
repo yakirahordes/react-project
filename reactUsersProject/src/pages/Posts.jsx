@@ -59,7 +59,7 @@ export default function Posts() {
     setAdd(false);
   }
 
-  const randomNum = Math.floor(Math.random() * 5000);
+  const randomNum = Math.floor(Math.random(1000000 - 100 + 1) + 100);
 
   function handleSearch(e) {
     setSearch(posts);
