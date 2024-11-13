@@ -1491,7 +1491,7 @@
   ],
   "photos": [
     {
-      "albumId": "1",
+      "albumId": null,
       "id": "1",
       "title": "accusamus beatae ad facilis cum similique qui sunt",
       "url": "https://via.placeholder.com/600/92c952",
@@ -1860,20 +1860,6 @@
       "title": "soluta et harum aliquid officiis ab omnis consequatur",
       "url": "https://via.placeholder.com/600/6efc5f",
       "thumbnailUrl": "https://via.placeholder.com/150/6efc5f"
-    },
-    {
-      "albumId": 2,
-      "id": "54",
-      "title": "ut ex quibusdam dolore mollitia",
-      "url": "https://via.placeholder.com/600/aa8f2e",
-      "thumbnailUrl": "https://via.placeholder.com/150/aa8f2e"
-    },
-    {
-      "albumId": 2,
-      "id": "55",
-      "title": "voluptatem consequatur totam qui aut iure est vel",
-      "url": "https://via.placeholder.com/600/5e04a4",
-      "thumbnailUrl": "https://via.placeholder.com/150/5e04a4"
     },
     {
       "albumId": 2,
@@ -36489,14 +36475,16 @@
       "title": "error quasi sunt cupiditate voluptate ea odit beatae",
       "url": "https://via.placeholder.com/600/6dd9cb",
       "thumbnailUrl": "https://via.placeholder.com/150/6dd9cb"
+    },
+    {
+      "id": -5000,
+      "albumId": "2",
+      "title": "dog",
+      "url": "https://hips.hearstapps.com/hmg-prod/images/golden-retriever-dog-royalty-free-image-505534037-1565105327.jpg?crop=0.760xw:1.00xh;0.204xw,0&resize=980:*",
+      "thumbnailUrl": "https://hips.hearstapps.com/hmg-prod/images/golden-retriever-dog-royalty-free-image-505534037-1565105327.jpg?crop=0.760xw:1.00xh;0.204xw,0&resize=980:*"
     }
   ],
   "albums": [
-    {
-      "userId": 1,
-      "id": "1",
-      "title": "quidem molestiae enim"
-    },
     {
       "userId": 1,
       "id": "2",
