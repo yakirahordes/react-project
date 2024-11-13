@@ -27,7 +27,7 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 h1 {
@@ -69,7 +69,7 @@ button:focus-visible {
 
 /* Style for the navbar */
 .navbar {
-  position: absolute; /* Position the navbar absolutely on the page */
+  position: sticky; /* Position the navbar absolutely on the page */
   top: 0; /* Place the navbar at the top of the page */
   left: 0; /* Align the navbar to the left */
   width: 100%; /* Make the navbar span the full width of the page */

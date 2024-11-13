@@ -24,8 +24,9 @@ export default function HomeLayout() {
           <button onClick={handleDeleteLS}>Logout</button>
         </Link>
       </nav>
-
-      <Outlet />
+      <div className='home-body'>
+        <Outlet />
+      </div>
     </>
   );
 }
