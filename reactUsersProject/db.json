@@ -257,63 +257,10 @@
       }
     },
     {
-      "id": 3788,
-      "username": "rotem",
-      "website": "1234"
-    },
-    {
-      "id": 3334,
-      "username": "tamar",
-      "website": "1234"
-    },
-    {
-      "id": 2263,
-      "username": "naama",
-      "website": "555"
-    },
-    {
-      "id": 238,
-      "username": "rivka",
-      "website": "111"
-    },
-    {
-      "id": "2850",
-      "username": "1",
-      "website": "1",
-      "name": "1",
-      "email": "1@1",
-      "address": {
-        "street": "1",
-        "suite": "1",
-        "city": "1"
-      },
-      "phone": "1"
-    },
-    {
-      "id": "3130",
-      "username": "12",
-      "website": "1",
-      "name": "2",
-      "email": "2@2",
-      "address": {
-        "street": "2",
-        "suite": "2",
-        "city": "2"
-      },
-      "phone": "2"
-    },
-    {
-      "id": "4727",
-      "username": "moriya",
-      "website": "444",
-      "name": "moriya",
-      "email": "moriya@gmail",
-      "address": {
-        "street": "123",
-        "suite": "321",
-        "city": "jerusalem"
-      },
-      "phone": "058999999"
+      "id": "6c0b",
+      "userId": 1,
+      "title": "yakira",
+      "completed": false
     }
   ],
   "todos": [
@@ -1512,32 +1459,43 @@
       "completed": false
     },
     {
-      "id": 234711,
-      "userId": "3130",
-      "title": "fewr",
+      "id": "251a",
+      "userId": "1",
+      "title": "dfg",
       "completed": false
     },
     {
-      "id": 448113,
-      "userId": "3130",
-      "title": "dwad",
+      "id": "3106",
+      "userId": "1",
+      "title": "dfg",
+      "completed": false
+    },
+    {
+      "id": "e166",
+      "userId": "1",
+      "title": "dfg",
+      "completed": false
+    },
+    {
+      "id": "265a",
+      "userId": "1",
+      "title": "sfd",
+      "completed": false
+    },
+    {
+      "id": "93f3",
+      "userId": "149",
+      "title": "11",
       "completed": false
     }
   ],
   "photos": [
     {
-      "albumId": null,
+      "albumId": "1",
       "id": "1",
       "title": "accusamus beatae ad facilis cum similique qui sunt",
       "url": "https://via.placeholder.com/600/92c952",
       "thumbnailUrl": "https://via.placeholder.com/150/92c952"
-    },
-    {
-      "albumId": 1,
-      "id": "2",
-      "title": "reprehenderit est deserunt velit ipsam",
-      "url": "https://via.placeholder.com/600/771796",
-      "thumbnailUrl": "https://via.placeholder.com/150/771796"
     },
     {
       "albumId": 1,
@@ -1559,13 +1517,6 @@
       "title": "natus nisi omnis corporis facere molestiae rerum in",
       "url": "https://via.placeholder.com/600/f66b97",
       "thumbnailUrl": "https://via.placeholder.com/150/f66b97"
-    },
-    {
-      "albumId": 1,
-      "id": "6",
-      "title": "accusamus ea aliquid et amet sequi nemo",
-      "url": "https://via.placeholder.com/600/56a8c2",
-      "thumbnailUrl": "https://via.placeholder.com/150/56a8c2"
     },
     {
       "albumId": 1,
@@ -1895,6 +1846,20 @@
       "title": "soluta et harum aliquid officiis ab omnis consequatur",
       "url": "https://via.placeholder.com/600/6efc5f",
       "thumbnailUrl": "https://via.placeholder.com/150/6efc5f"
+    },
+    {
+      "albumId": 2,
+      "id": "54",
+      "title": "ut ex quibusdam dolore mollitia",
+      "url": "https://via.placeholder.com/600/aa8f2e",
+      "thumbnailUrl": "https://via.placeholder.com/150/aa8f2e"
+    },
+    {
+      "albumId": 2,
+      "id": "55",
+      "title": "voluptatem consequatur totam qui aut iure est vel",
+      "url": "https://via.placeholder.com/600/5e04a4",
+      "thumbnailUrl": "https://via.placeholder.com/150/5e04a4"
     },
     {
       "albumId": 2,
@@ -36510,16 +36475,14 @@
       "title": "error quasi sunt cupiditate voluptate ea odit beatae",
       "url": "https://via.placeholder.com/600/6dd9cb",
       "thumbnailUrl": "https://via.placeholder.com/150/6dd9cb"
-    },
-    {
-      "id": -5000,
-      "albumId": "2",
-      "title": "dog",
-      "url": "https://hips.hearstapps.com/hmg-prod/images/golden-retriever-dog-royalty-free-image-505534037-1565105327.jpg?crop=0.760xw:1.00xh;0.204xw,0&resize=980:*",
-      "thumbnailUrl": "https://hips.hearstapps.com/hmg-prod/images/golden-retriever-dog-royalty-free-image-505534037-1565105327.jpg?crop=0.760xw:1.00xh;0.204xw,0&resize=980:*"
     }
   ],
   "albums": [
+    {
+      "userId": 1,
+      "id": "1",
+      "title": "quidem molestiae enim"
+    },
     {
       "userId": 1,
       "id": "2",
@@ -36559,11 +36522,6 @@
       "userId": 1,
       "id": "9",
       "title": "saepe unde necessitatibus rem"
-    },
-    {
-      "userId": 1,
-      "id": "10",
-      "title": "distinctio laborum qui"
     },
     {
       "userId": 2,
@@ -37121,6 +37079,13 @@
       "name": "debitis magnam hic odit aut ullam nostrum tenetur",
       "email": "Maynard.Hodkiewicz@roberta.com",
       "body": "nihil ut voluptates blanditiis autem odio dicta rerum\nquisquam saepe et est\nsunt quasi nemo laudantium deserunt\nmolestias tempora quo quia"
+    },
+    {
+      "postId": 4,
+      "id": "16",
+      "name": "perferendis temporibus delectus optio ea eum ratione dolorum",
+      "email": "Christine@ayana.info",
+      "body": "iste ut laborum aliquid velit facere itaque\nquo ut soluta dicta voluptate\nerror tempore aut et\nsequi reiciendis dignissimos expedita consequuntur libero sed fugiat facilis"
     },
     {
       "postId": 4,
@@ -40509,18 +40474,6 @@
       "name": "ex eaque eum natus",
       "email": "Emma@joanny.ca",
       "body": "perspiciatis quis doloremque\nveniam nisi eos velit sed\nid totam inventore voluptatem laborum et eveniet\naut aut aut maxime quia temporibus ut omnis"
-    },
-    {
-      "id": 1838,
-      "postId": "4",
-      "name": "yakira",
-      "body": "hi"
-    },
-    {
-      "id": 1843,
-      "postId": "5",
-      "name": "orli",
-      "body": "hi"
     }
   ],
   "posts": [
@@ -41117,30 +41070,6 @@
       "userId": "149",
       "title": "11",
       "body": "11"
-    },
-    {
-      "id": 2094,
-      "userId": "149",
-      "title": "ew",
-      "body": "FWE"
-    },
-    {
-      "id": 435,
-      "userId": "1",
-      "title": "ew",
-      "body": "rew"
-    },
-    {
-      "id": 3895,
-      "userId": "4727",
-      "title": "ed",
-      "body": "dcad"
-    },
-    {
-      "id": 3453,
-      "userId": "4727",
-      "title": "fdcsaf",
-      "body": "sadasd"
     }
   ]
 }
