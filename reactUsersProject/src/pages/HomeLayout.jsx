@@ -26,7 +26,7 @@ export default function HomeLayout() {
 
   return (
     <>
-      <NavBar setDisplayName={setDisplayName}/>
+      <NavBar/>
       {error != null && <p>{error}</p>}
       <h2>Hello {user.name}!</h2>
       <div className='home-body'>
