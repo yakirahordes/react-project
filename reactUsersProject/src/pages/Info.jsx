@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../functions/API_URL";
+import { fetchData } from "../functions/fetchdata";
 
 export default function Info() {
   const [userData, setUserData] = useState({});
   const [error, setError] = useState(null);
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
+
   useEffect(() => {
-    const fetchUsersData = async () => {
-      try {
-        const response = await fetch(`${API_URL}/users/${userId}`);
-        if (!response.ok) throw Error("Did not receive expected data");
-        const data = await response.json();
-        setUserData(data);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    (async () => await fetchUsersData())();
+    (async () =>
+      await fetchData(`users/${userId}`, "data", setUserData, setError))();
   }, []);
+
   return (
     <>
       <h1>Info</h1>

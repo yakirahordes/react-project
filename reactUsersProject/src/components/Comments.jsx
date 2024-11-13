@@ -3,6 +3,7 @@ import apiRequest from "../components/apiRequest";
 import { API_URL } from "../functions/API_URL";
 import Comment from "./Comment";
 import { handleDelete } from "../functions/delete";
+import { fetchData } from "../functions/fetchdata";
 
 export default function Comments({ postId }) {
   const [comments, setComments] = useState([]);
@@ -12,35 +13,29 @@ export default function Comments({ postId }) {
   const [commentingUsername, setCommentingUsername] = useState();
 
   useEffect(() => {
-    const fetchCommentsData = async () => {
-      try {
-        const response = await fetch(`${API_URL}/comments?postId=${postId}`);
-        if (!response.ok) throw Error("Did not receive expected data");
-        const data = await response.json();
-        if (data.length === 0) setError("You have no comments");
-        else {
-          setComments(data);
-          setError(null);
-        }
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    (async () => await fetchCommentsData())();
+    // const fetchCommentsData = async () => {
+    //   try {
+    //     const response = await fetch(`${API_URL}/comments?postId=${postId}`);
+    //     if (!response.ok) throw Error("Did not receive expected data");
+    //     const data = await response.json();
+    //     if (data.length === 0) setError("You have no comments");
+    //     else {
+    //       setComments(data);
+    //       setError(null);
+    //     }
+    //   } catch (err) {
+    //     setError(err.message);
+    //   }
+    // };
+    (async () =>
+      await fetchData(
+        `comments?postId=${postId}`,
+        "comments",
+        setComments,
+        setError
+      ))();
   }, []);
 
-  // async function handleDeleteComment(commentItem) {
-  //   const newCommentList = comments.filter(
-  //     (comment) => comment.id !== commentItem.id
-  //   );
-  //   setComments(newCommentList);
-  //   const deleteOption = {
-  //     method: "DELETE",
-  //   };
-  //   const url = `${API_URL}/comments/${commentItem.id}`;
-  //   const result = await apiRequest(url, deleteOption);
-  //   setError(result.errMsg);
-  // }
   function handledeleteItem(item) {
     handleDelete(comments, item, setComments, "comments", setError);
   }
@@ -48,7 +43,7 @@ export default function Comments({ postId }) {
   async function addComment(e) {
     e.preventDefault();
     const newComment = {
-      postId: postId,
+      postId: parseInt(postId),
       id: randomNum.toString(),
       name: commentingUsername,
       body: newBody,
@@ -65,21 +60,11 @@ export default function Comments({ postId }) {
     setAdd(false);
   }
 
-  const randomNum = Math.floor(Math.random(1000000 - 500 + 1) -500);
+  const randomNum = Math.floor(Math.random() * (1000000 - 500 + 1) - 500);
 
   return (
     <>
       {error !== null && <p>{error}</p>}
-      <button onClick={() => setAdd(prev => !prev)}>add</button>
-      {add && (
-        <form>
-          <label>Commenting user id:</label>
-          <input onChange={(e) => setCommentingUserId(e.target.value)}></input>
-          <label>Body:</label>
-          <input onChange={(e) => setNewBody(e.target.value)}></input>
-          <button onClick={addComment}>save</button>
-        </form>
-      )}
       <main className="comments-container">
         {comments.map((comment) => {
           return (

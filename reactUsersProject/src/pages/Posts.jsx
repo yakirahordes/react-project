@@ -3,6 +3,7 @@ import { API_URL } from "../functions/API_URL";
 import apiRequest from "../components/apiRequest";
 import Post from "../components/Post";
 import { handleDelete } from "../functions/delete";
+import { fetchData } from "../functions/fetchdata";
 
 export default function Posts() {
   const [error, setError] = useState(null);
@@ -18,21 +19,8 @@ export default function Posts() {
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
   useEffect(() => {
-    const fetchPostsData = async () => {
-      try {
-        const response = await fetch(`${API_URL}/posts?userId=${userId}`);
-        if (!response.ok) throw Error("Did not receive expected data");
-        const data = await response.json();
-        if (data.length === 0) setError("You have no posts");
-        else {
-          setPosts(data);
-          setError(null);
-        }
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-    (async () => await fetchPostsData())();
+    (async () =>
+      await fetchData(`posts?userId=${userId}`, "posts", setPosts, setError))();
   }, []);
 
   function handledeleteItem(item) {
@@ -40,10 +28,11 @@ export default function Posts() {
   }
 
   async function addPost(e) {
+    const randomNum = Math.floor(Math.random() * (1000000 - 110 + 1) + 110);
     e.preventDefault();
     const newPost = {
-      userId: userId,
-      id: randomNum,
+      userId: parseInt(userId),
+      id: randomNum.toString(),
       title: newTitle,
       body: newBody,
     };
@@ -58,8 +47,6 @@ export default function Posts() {
     setPosts((prev) => [...prev, result.data]);
     setAdd(false);
   }
-
-  const randomNum = Math.floor(Math.random(1000000 - 100 + 1) + 100);
 
   function handleSearch(e) {
     setSearch(posts);
