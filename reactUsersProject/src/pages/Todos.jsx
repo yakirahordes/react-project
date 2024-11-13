@@ -20,9 +20,11 @@ export default function Todos() {
         const response = await fetch(`${API_URL}/todos?userId=${userId}`);
         if (!response.ok) throw Error("Did not receive expected data");
         const data = await response.json();
-        console.log(data);
-        setTodosList(data);
-        setError(null);
+        if (data.length === 0) setError("you have no todos yet");
+        else {
+          setTodosList(data);
+          setError(null);
+        }
       } catch (err) {
         setError(err.message);
       }
@@ -56,6 +58,7 @@ export default function Todos() {
     const result = await apiRequest(`${API_URL}/todos`, postOption);
     setError(result.errMsg);
     setTodosList((prev) => [...prev, result.data]);
+    setAdd(false);
   }
 
   return (
