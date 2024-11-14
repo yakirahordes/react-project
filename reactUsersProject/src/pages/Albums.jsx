@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import apiRequest from "../components/apiRequest";
 import Album from "../components/Album";
 import { fetchData } from "../functions/fetchdata";
-import { API_URL } from "../functions/API_URL";
 import { handleDelete } from "../functions/delete";
 import { addItem } from "../functions/add";
 

@@ -48,7 +48,7 @@ export default function Todos() {
     const sortedTodos = todosList.sort((a, b) =>
       a.completed === b.completed ? 0 : a.completed ? 1 : -1
     );
-    const sortedSearchedTodos = search.searchedTodos.sort((a, b) =>
+    const sortedSearchedTodos = search?.searchedItems?.sort((a, b) =>
       a.completed === b.completed ? 0 : a.completed ? 1 : -1
     );
     setSearch((prev) => ({ ...prev, searchedTodos: sortedSearchedTodos }));

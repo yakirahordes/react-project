@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { API_URL } from "../functions/API_URL";
-import apiRequest from "./apiRequest";
+import apiRequest from "../functions/apiRequest";
 import { edit } from "../functions/edit";
 
 export default function Todo({ item, deleteItem, setError }) {

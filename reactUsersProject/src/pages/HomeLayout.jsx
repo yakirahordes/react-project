@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import { API_URL } from "../functions/API_URL";
 import { fetchData } from "../functions/fetchdata";
 
 export default function HomeLayout() {

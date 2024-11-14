@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { API_URL } from "../functions/API_URL";
 import { useNavigate } from "react-router-dom";
-import apiRequest from "../components/apiRequest";
+import apiRequest from "../functions/apiRequest";
 
 export default function Details() {
   const [name, setName] = useState("");
