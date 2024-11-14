@@ -48,22 +48,22 @@ export default function Details() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <h1>Details</h1>
       <label>name:</label>
-      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <input value={name} onChange={(e) => setName(e.target.value)} /><br/>
       <label>email:</label>
       <input
         value={email}
         type="email"
         onChange={(e) => setEmail(e.target.value)}
-      />
+      /><br/>
       <label>phone:</label>
       <input
         value={phone}
         type="tel"
         onChange={(e) => setPhone(e.target.value)}
-      />
+      /><br/>
       <label>adress:</label>
       <label>street:</label>
       <input
@@ -85,7 +85,7 @@ export default function Details() {
         onChange={(e) =>
           setAddress((prev) => ({ ...prev, city: e.target.value }))
         }
-      />
+      /><br/>
       <button>Submit</button>
       <p>{error}</p>
     </form>
