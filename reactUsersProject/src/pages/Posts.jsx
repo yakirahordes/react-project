@@ -47,10 +47,10 @@ export default function Posts() {
       <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
-          <label>Title:</label>
-          <input onChange={(e) => setNewTitle(e.target.value)}></input>
-          <label>Body:</label>
-          <input onChange={(e) => setNewBody(e.target.value)}></input>
+          <label>Title:</label><br/>
+          <input onChange={(e) => setNewTitle(e.target.value)}></input><br/>
+          <label>Body:</label><br/>
+          <input onChange={(e) => setNewBody(e.target.value)}></input><br/>
           <button onClick={addPost}>save</button>
         </form>
       )}

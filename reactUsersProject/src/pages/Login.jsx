@@ -36,15 +36,19 @@ export default function Login() {
   }
 
   useEffect(() => {
-    const handlePopState = (e) => {
-      window.history.pushState(null, document.title, window.location.href);
+    window.history.pushState(null, '', window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, '', window.location.href);
     };
-    window.history.pushState(null, document.title, window.location.href);
-    window.onpopstate = handlePopState;
-    return () => {
-      window.onpopstate = null;
-    };
-  });
+    // const handlePopState = (e) => {
+    //   window.history.pushState(null, document.title, window.location.href);
+    // };
+    // window.history.pushState(null, document.title, window.location.href);
+    // window.onpopstate = handlePopState;
+    // return () => {
+    //   window.onpopstate = null;
+    // };
+  },[]);
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>

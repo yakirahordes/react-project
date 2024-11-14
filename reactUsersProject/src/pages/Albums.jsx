@@ -39,8 +39,8 @@ export default function Albums() {
       <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
-          <label>Title:</label>
-          <input onChange={(e) => setNewTitle(e.target.value)}></input>
+          <label>Title:</label><br/>
+          <input onChange={(e) => setNewTitle(e.target.value)}></input><br/>
           <button onClick={addAlbum}>save</button>
         </form>
       )}

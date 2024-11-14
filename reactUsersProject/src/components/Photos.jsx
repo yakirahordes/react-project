@@ -11,6 +11,7 @@ export default function Photos({ albumId }) {
   const [add, setAdd] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [startIndex, setStartIndex] = useState(0);
+  const [showMore, setShowMore] = useState(true);
 
   useEffect(() => {
     (async () => await fetchPhotosData())();
@@ -23,10 +24,12 @@ export default function Photos({ albumId }) {
       if (!response.ok) throw Error("Did not receive expected data");
       const data = await response.json();
       if (data.length === 0 && photos.length !== 0) {
+        setShowMore(false);
         setError("There is no more photos");
       } else {
-        if (data.length === 0 && photos.length === 0)
-          setError("You have no photos");
+        if (data.length === 0 && photos.length === 0){
+          setShowMore(false);
+          setError("You have no photos");}
         else {
           if (photos.length === 0) {
             setPhotos(data);
@@ -62,10 +65,10 @@ export default function Photos({ albumId }) {
       <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
-          <label>photo title:</label>
-          <input onChange={(e) => setNewTitle(e.target.value)}></input>
-          <label>photo adress:</label>
-          <input onChange={(e) => setPhotoAddress(e.target.value)}></input>
+          <label>photo title:</label><br/>
+          <input onChange={(e) => setNewTitle(e.target.value)}></input><br/>
+          <label>photo adress:</label><br/>
+          <input onChange={(e) => setPhotoAddress(e.target.value)}></input><br/>
           <button onClick={addPhoto}>save</button>
         </form>
       )}
@@ -81,7 +84,7 @@ export default function Photos({ albumId }) {
           );
         })}
       </main>
-      <button onClick={fetchPhotosData}>show more</button>
+      {showMore && <button onClick={fetchPhotosData}>show more</button>}
     </>
   );
 }

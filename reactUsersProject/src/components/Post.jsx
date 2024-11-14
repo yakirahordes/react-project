@@ -40,7 +40,7 @@ export default function Post({ item, handledeleteItem, setError }) {
           Comments
         </button>
         <button onClick={() => setShowBody((prev) => !prev)}>Body</button>
-        <button onClick={() => handledeleteItem(post)}>delete</button>
+        <button onClick={() => handledeleteItem(item)}>delete</button>
       </div>
     </div>
   );

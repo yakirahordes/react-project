@@ -51,12 +51,12 @@ export default function Comments({ postId }) {
       <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
-          <label>Commenting user name:</label>
+          <label>Commenting user name:</label><br/>
           <input
             onChange={(e) => setCommentingUsername(e.target.value)}
-          ></input>
-          <label>Body:</label>
-          <input onChange={(e) => setNewBody(e.target.value)}></input>
+          ></input><br/>
+          <label>Body:</label><br/>
+          <input onChange={(e) => setNewBody(e.target.value)}></input><br/>
           <button onClick={addComment}>save</button>
         </form>
       )}
