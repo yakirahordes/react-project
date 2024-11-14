@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { API_URL } from "../functions/API_URL";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { fetchData } from "../functions/fetchdata";
 
@@ -51,11 +50,22 @@ export default function Login() {
     <form className="login-form" onSubmit={handleSubmit}>
       <h1 className="inside-form">Login</h1>
       <label className="inside-form">Username:</label>
-      <input className="inside-form" value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
+      <input
+        className="inside-form"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <br />
       <label className="inside-form">Password:</label>
-      <input className="inside-form" value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
-      <button className="inside-form">Submit</button><br/>
-      <Link className="inside-form" to='/register' >
+      <input
+        className="inside-form"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <br />
+      <button className="inside-form">Submit</button>
+      <br />
+      <Link className="inside-form" to="/register">
         Sign Up
       </Link>
       <p className="inside-form">{error}</p>

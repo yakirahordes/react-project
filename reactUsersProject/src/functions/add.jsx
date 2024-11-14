@@ -1,4 +1,4 @@
-import apiRequest from "../components/apiRequest";
+import apiRequest from "./apiRequest";
 import { API_URL } from "../functions/API_URL";
 
 export async function addItem(

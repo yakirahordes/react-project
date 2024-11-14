@@ -1,5 +1,5 @@
 import { API_URL } from "./API_URL";
-import apiRequest from "../components/apiRequest";
+import apiRequest from "./apiRequest";
 
 export async function handleDelete(
   sections,

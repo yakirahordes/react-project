@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../functions/API_URL";
 import { useNavigate, Link } from "react-router-dom";
-import apiRequest from "../components/apiRequest";
+import apiRequest from "../functions/apiRequest";
 import { fetchData } from "../functions/fetchdata";
 
 export default function Register() {
@@ -68,18 +68,20 @@ export default function Register() {
     <form className="login-form" onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
       <label>Username:</label>
-      <input value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
+      <input value={username} onChange={(e) => setUsername(e.target.value)} />
+      <br />
       <label>Password:</label>
-      <input value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
+      <input value={password} onChange={(e) => setPassword(e.target.value)} />
+      <br />
       <label>Verify Password:</label>
       <input
         value={verifyPassword}
         onChange={(e) => setVerifyPassword(e.target.value)}
-      /><br/>
-      <button>Submit</button><br/>
-      <Link to='/' >
-        Login
-      </Link>
+      />
+      <br />
+      <button>Submit</button>
+      <br />
+      <Link to="/">Login</Link>
       <p>{error}</p>
     </form>
   );
