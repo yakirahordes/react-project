@@ -21,7 +21,6 @@ export default function Photos({ albumId }) {
       );
       if (!response.ok) throw Error("Did not receive expected data");
       const data = await response.json();
-      console.log(data);
       if (data.length === 0 && photos.length !== 0) {
         setError("There is no more photos");
       } else {

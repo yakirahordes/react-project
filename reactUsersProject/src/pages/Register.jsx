@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../functions/API_URL";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import apiRequest from "../components/apiRequest";
 import { fetchData } from "../functions/fetchdata";
 
@@ -65,18 +65,21 @@ export default function Register() {
   const randomNum = Math.floor(Math.random() * 5000);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
       <label>Username:</label>
-      <input value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input value={username} onChange={(e) => setUsername(e.target.value)} /><br/>
       <label>Password:</label>
-      <input value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input value={password} onChange={(e) => setPassword(e.target.value)} /><br/>
       <label>Verify Password:</label>
       <input
         value={verifyPassword}
         onChange={(e) => setVerifyPassword(e.target.value)}
-      />
-      <button>Submit</button>
+      /><br/>
+      <button>Submit</button><br/>
+      <Link to='/' >
+        Login
+      </Link>
       <p>{error}</p>
     </form>
   );

@@ -4,7 +4,7 @@ import Todo from "../components/Todo";
 import apiRequest from "../components/apiRequest";
 import { handleDelete } from "../functions/delete";
 import { fetchData } from "../functions/fetchdata";
-
+import { addItem } from "../functions/add";
 export default function Todos() {
   const [error, setError] = useState(null);
   const [todosList, setTodosList] = useState([]);
@@ -55,7 +55,7 @@ export default function Todos() {
       title: newTitle,
       completed: false,
     };
-    add(e, newTodo, "todos", setError, setTodos, setAdd);
+    addItem(e, newTodo, "todos", setError, setTodosList, setAdd);
   }
 
   function handleSearch(e) {
@@ -74,7 +74,12 @@ export default function Todos() {
       setSearch({ isSearched: true, searchedTodos: searched });
     }
   }
-
+  function sortTodos() {
+    const sortedTodos = todosList.sort((a, b) => a.completed === b.completed ? 0 : a.completed ? 1 : -1);
+    const sortedSearchedTodos = search.searchedTodos.sort((a, b) => a.completed === b.completed ? 0 : a.completed ? 1 : -1);
+    setSearch(prev => ({ ...prev, searchedTodos: sortedSearchedTodos }))
+    setTodosList(sortedTodos);
+  }
   return (
     <>
       <h1>Todos</h1>
@@ -94,28 +99,29 @@ export default function Todos() {
         onChange={(e) => setSearchInput(e.target.value)}
       />
       <button onClick={handleSearch}>search</button>
+      <button onClick={sortTodos}>sort</button>
       <main className="todos-container">
         {!search.isSearched
           ? todosList.map((item) => {
-              return (
-                <Todo
-                  key={item.id}
-                  item={item}
-                  deleteItem={deleteItem}
-                  setError={setError}
-                />
-              );
-            })
+            return (
+              <Todo
+                key={item.id}
+                item={item}
+                deleteItem={deleteItem}
+                setError={setError}
+              />
+            );
+          })
           : search.searchedTodos.map((item) => {
-              return (
-                <Todo
-                  key={item.id + "b"}
-                  item={item}
-                  deleteItem={deleteItem}
-                  setError={setError}
-                />
-              );
-            })}
+            return (
+              <Todo
+                key={item.id + "b"}
+                item={item}
+                deleteItem={deleteItem}
+                setError={setError}
+              />
+            );
+          })}
       </main>
     </>
   );

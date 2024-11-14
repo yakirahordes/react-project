@@ -22,6 +22,9 @@ export default function Album({ album, handleDeleteAlbum, setError }) {
         setError(result.errMsg);
         setIsEdited(false);
     }
+    function displayPhotos(){
+        setShowPhotos((prev) => !prev)
+    }
     return (
         <div className="album-data">
             <span>{album.id}</span>
@@ -34,7 +37,7 @@ export default function Album({ album, handleDeleteAlbum, setError }) {
             <br />
             {showPhotos && (
                 <div className="album-photos">
-                    <Photos albumId={album.id} />
+                    <Photos albumId={album.id}/>
                 </div>
             )}
 
@@ -44,7 +47,7 @@ export default function Album({ album, handleDeleteAlbum, setError }) {
                 ) : (
                     <button onClick={handleSaveChanges}>save</button>
                 )}
-                <button onClick={() => setShowPhotos((prev) => !prev)}>Photos</button>
+                <button onClick={displayPhotos}>Photos</button>
                 <button onClick={() => handleDeleteAlbum(album)}>delete</button>
             </div>
         </div>
