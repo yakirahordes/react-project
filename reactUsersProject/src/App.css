@@ -101,3 +101,17 @@
 .delete-photo-button{
   font-size: 12px;
 }
+.info-detail{
+  margin-bottom: 20px;
+  font-size: 20px;
+  width: 200px;
+}
+.info-detail label {
+  font-weight: bold;
+  direction: ltr;
+}
+.info-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

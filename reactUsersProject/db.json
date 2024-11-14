@@ -231,105 +231,26 @@
       }
     },
     {
-      "id": "149",
-      "username": "orli",
-      "website": "12"
-    },
-    {
-      "id": "637",
-      "username": "yakira",
-      "website": "123"
-    },
-    {
-      "id": "ff27",
+      "id": "2808",
       "username": "orlimelkam",
-      "website": "1206"
-    },
-    {
-      "id": "59e8",
-      "username": "lielmelkam",
-      "website": "1308",
+      "website": "1206",
+      "name": "Orli Melkam",
       "email": "test@example.us",
       "address": {
         "street": "1600 Fake Street",
         "suite": "Apartment 1",
         "city": "Mountain View"
-      }
-    },
-    {
-      "id": 3788,
-      "username": "rotem",
-      "website": "1234"
-    },
-    {
-      "id": 3334,
-      "username": "tamar",
-      "website": "1234"
-    },
-    {
-      "id": 2263,
-      "username": "naama",
-      "website": "555"
-    },
-    {
-      "id": 238,
-      "username": "rivka",
-      "website": "111"
-    },
-    {
-      "id": "2850",
-      "username": "1",
-      "website": "1",
-      "name": "1",
-      "email": "1@1",
-      "address": {
-        "street": "1",
-        "suite": "1",
-        "city": "1"
       },
-      "phone": "1"
-    },
-    {
-      "id": "3130",
-      "username": "12",
-      "website": "1",
-      "name": "2",
-      "email": "2@2",
-      "address": {
-        "street": "2",
-        "suite": "2",
-        "city": "2"
-      },
-      "phone": "2"
-    },
-    {
-      "id": "4727",
-      "username": "moriya",
-      "website": "444",
-      "name": "moriya",
-      "email": "moriya@gmail",
-      "address": {
-        "street": "123",
-        "suite": "321",
-        "city": "jerusalem"
-      },
-      "phone": "058999999"
-    },
-    {
-      "id": "14",
-      "username": "22",
-      "website": "22",
-      "name": "2",
-      "email": "2@e",
-      "address": {
-        "street": "2",
-        "suite": "2",
-        "city": "2"
-      },
-      "phone": "2"
+      "phone": "6019521325"
     }
   ],
   "todos": [
+    {
+      "userId": 1,
+      "id": "1",
+      "title": "delectus ",
+      "completed": false
+    },
     {
       "userId": 1,
       "id": "2",
@@ -1517,52 +1438,15 @@
       "id": "200",
       "title": "ipsam aperiam voluptates qui",
       "completed": false
-    },
-    {
-      "id": "251a",
-      "userId": "1",
-      "title": "dfg",
-      "completed": false
-    },
-    {
-      "id": "3106",
-      "userId": "1",
-      "title": "dfg",
-      "completed": false
-    },
-    {
-      "id": "e166",
-      "userId": "1",
-      "title": "dfg",
-      "completed": false
-    },
-    {
-      "id": "265a",
-      "userId": "1",
-      "title": "sfd",
-      "completed": false
-    },
-    {
-      "id": "93f3",
-      "userId": "149",
-      "title": "11",
-      "completed": false
     }
   ],
   "photos": [
     {
-      "albumId": null,
+      "albumId": "1",
       "id": "1",
       "title": "accusamus beatae ad facilis cum similique qui sunt",
       "url": "https://via.placeholder.com/600/92c952",
       "thumbnailUrl": "https://via.placeholder.com/150/92c952"
-    },
-    {
-      "albumId": 1,
-      "id": "2",
-      "title": "reprehenderit est deserunt velit ipsam",
-      "url": "https://via.placeholder.com/600/771796",
-      "thumbnailUrl": "https://via.placeholder.com/150/771796"
     },
     {
       "albumId": 1,
@@ -36542,13 +36426,6 @@
       "title": "error quasi sunt cupiditate voluptate ea odit beatae",
       "url": "https://via.placeholder.com/600/6dd9cb",
       "thumbnailUrl": "https://via.placeholder.com/150/6dd9cb"
-    },
-    {
-      "id": -5000,
-      "albumId": "2",
-      "title": "dog",
-      "url": "https://hips.hearstapps.com/hmg-prod/images/golden-retriever-dog-royalty-free-image-505534037-1565105327.jpg?crop=0.760xw:1.00xh;0.204xw,0&resize=980:*",
-      "thumbnailUrl": "https://hips.hearstapps.com/hmg-prod/images/golden-retriever-dog-royalty-free-image-505534037-1565105327.jpg?crop=0.760xw:1.00xh;0.204xw,0&resize=980:*"
     }
   ],
   "albums": [
@@ -37048,9 +36925,9 @@
       "title": "enim repellat iste"
     },
     {
-      "id": "988211",
-      "userId": 149,
-      "title": "fsE"
+      "id": "577195",
+      "userId": 2808,
+      "title": "new album"
     }
   ],
   "comments": [
@@ -40555,25 +40432,13 @@
       "body": "perspiciatis quis doloremque\nveniam nisi eos velit sed\nid totam inventore voluptatem laborum et eveniet\naut aut aut maxime quia temporibus ut omnis"
     },
     {
-      "id": 1838,
-      "postId": "4",
-      "name": "yakira",
-      "body": "hi"
-    },
-    {
-      "id": 1843,
-      "postId": "5",
+      "id": "831778",
+      "postId": 673458,
       "name": "orli",
       "body": "hi"
     }
   ],
   "posts": [
-    {
-      "userId": 1,
-      "id": "4",
-      "title": "e",
-      "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit"
-    },
     {
       "userId": 1,
       "id": "5",
@@ -41145,40 +41010,10 @@
       "body": "quo deleniti praesentium dicta non quod\naut est molestias\nmolestias et officia quis nihil\nitaque dolorem quia"
     },
     {
-      "id": 2192,
-      "userId": "1",
-      "title": "eee",
-      "body": "eee"
-    },
-    {
-      "id": 3786,
-      "userId": "149",
-      "title": "11",
-      "body": "11"
-    },
-    {
-      "id": 2094,
-      "userId": "149",
-      "title": "ew",
-      "body": "FWE"
-    },
-    {
-      "id": 435,
-      "userId": "1",
-      "title": "ew",
-      "body": "rew"
-    },
-    {
-      "id": 3895,
-      "userId": "4727",
-      "title": "ed",
-      "body": "dcad"
-    },
-    {
-      "id": 3453,
-      "userId": "4727",
-      "title": "fdcsaf",
-      "body": "sadasd"
+      "userId": 10,
+      "id": "100",
+      "title": "at nam consequatur ea labore ea harum",
+      "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
     }
   ]
 }

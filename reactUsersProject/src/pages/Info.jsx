@@ -16,33 +16,43 @@ export default function Info() {
   return (
     <>
       <h1>Info</h1>
-      <label>name:</label>
-      <br />
-      <span>{userData?.name}</span>
-      <br />
-      <label>email:</label>
-      <br />
-      <span>{userData?.email}</span>
-      <br />
-      <label>phone:</label>
-      <br />
-      <span>{userData?.phone}</span>
-      <br />
-      <label>address</label>
-      <br />
-      <label>street:</label>
-      <br />
-      <span>{userData?.address?.street}</span>
-      <br />
-      <label>suite:</label>
-      <br />
-      <span>{userData?.address?.suite}</span>
-      <br />
-      <label>city:</label>
-      <br />
-      <span>{userData?.address?.city}</span>
-      <br />
+      <div className="info-container">
+      <div className="info-detail">
+        <label>name:</label>
+        <br />
+        <span>{userData?.name}</span>
+        <br />
+      </div>
+      <div className="info-detail">
+        <label>email:</label>
+        <br />
+        <span>{userData?.email}</span>
+        <br />
+      </div>
+      <div className="info-detail">
+        <label>phone:</label>
+        <br />
+        <span>{userData?.phone}</span>
+        <br />
+      </div>
+      <div className="info-detail">
+        <label>address:</label>
+        <br />
+        <label>street:</label>
+        <br />
+        <span>{userData?.address?.street}</span>
+        <br />
+        <label>suite:</label>
+        <br />
+        <span>{userData?.address?.suite}</span>
+        <br />
+        <label>city:</label>
+        <br />
+        <span>{userData?.address?.city}</span>
+        <br />
+      </div>
       <p>{error}</p>
+      </div>
     </>
   );
 }
