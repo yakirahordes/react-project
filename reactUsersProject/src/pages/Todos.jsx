@@ -44,6 +44,17 @@ export default function Todos() {
     searchItem(e, searchInput, todosList, setSearch);
   }
 
+  function sortTodos() {
+    const sortedTodos = todosList.sort((a, b) =>
+      a.completed === b.completed ? 0 : a.completed ? 1 : -1
+    );
+    const sortedSearchedTodos = search.searchedTodos.sort((a, b) =>
+      a.completed === b.completed ? 0 : a.completed ? 1 : -1
+    );
+    setSearch((prev) => ({ ...prev, searchedTodos: sortedSearchedTodos }));
+    setTodosList(sortedTodos);
+  }
+
   return (
     <>
       <h1>Todos</h1>
@@ -63,6 +74,7 @@ export default function Todos() {
         onChange={(e) => setSearchInput(e.target.value)}
       />
       <button onClick={handleSearch}>search</button>
+      <button onClick={sortTodos}>sort</button>
       <main className="todos-container">
         {!search.isSearched
           ? todosList.map((item) => {
