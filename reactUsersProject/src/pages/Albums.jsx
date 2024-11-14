@@ -4,6 +4,7 @@ import Album from "../components/Album";
 import { fetchData } from "../functions/fetchdata";
 import { API_URL } from "../functions/API_URL";
 import { handleDelete } from "../functions/delete";
+import { addItem } from "../functions/add";
 
 export default function Albums() {
   const [error, setError] = useState(null);
@@ -25,26 +26,13 @@ export default function Albums() {
   function handleDeleteAlbum(albumItem) {
     handleDelete(albums, albumItem, setAlbums, "albums", setError);
   }
-  async function addAlbum(e) {
-    e.preventDefault();
+  function addAlbum(e) {
     const newAlbum = {
       userId: parseInt(userId),
-      id: randomNum.toString(),
       title: newTitle,
     };
-
-    const albumOption = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newAlbum),
-    };
-    const result = await apiRequest(`${API_URL}/albums`, albumOption);
-    setError(result.errMsg);
-    setAlbums((prev) => [...prev, result.data]);
-    setAdd(false);
+    addItem(e, newAlbum, "albums", setError, setAlbums, setAdd);
   }
-
-  const randomNum = Math.floor(Math.random() * (1000000 - 100 + 1) + 100);
 
   return (
     <>
@@ -59,11 +47,11 @@ export default function Albums() {
         </form>
       )}
       <main className="albums-container">
-        {albums.map((album) => {
+        {albums.map((item) => {
           return (
             <Album
-              key={album.id + "num"}
-              album={album}
+              key={item.id}
+              item={item}
               handleDeleteAlbum={handleDeleteAlbum}
               setError={setError}
             />

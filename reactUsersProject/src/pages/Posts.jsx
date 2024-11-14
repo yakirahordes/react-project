@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { API_URL } from "../functions/API_URL";
-import apiRequest from "../components/apiRequest";
 import Post from "../components/Post";
 import { handleDelete } from "../functions/delete";
 import { fetchData } from "../functions/fetchdata";
+import { addItem } from "../functions/add";
+import { searchItem } from "../functions/search";
 
 export default function Posts() {
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ export default function Posts() {
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState({
     isSearched: false,
-    searchedPosts: [],
+    searchedItems: [],
   });
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
@@ -27,49 +27,24 @@ export default function Posts() {
     handleDelete(posts, item, setPosts, "posts", setError);
   }
 
-  async function addPost(e) {
-    const randomNum = Math.floor(Math.random() * (1000000 - 110 + 1) + 110);
-    e.preventDefault();
+  function addPost(e) {
     const newPost = {
       userId: parseInt(userId),
-      id: randomNum.toString(),
       title: newTitle,
       body: newBody,
     };
-
-    const postOption = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newPost),
-    };
-    const result = await apiRequest(`${API_URL}/posts`, postOption);
-    setError(result.errMsg);
-    setPosts((prev) => [...prev, result.data]);
-    setAdd(false);
+    addItem(e, newPost, "posts", setError, setPosts, setAdd);
   }
 
   function handleSearch(e) {
-    setSearch(posts);
-    e.preventDefault();
-    if (searchInput !== "") {
-      let searched = posts.filter((post) =>
-        post.title
-          .trim()
-          .toLowerCase()
-          .includes(searchInput.trim().toLowerCase())
-      );
-      if (searched.length === 0) {
-        searched = posts.filter((post) => post.title === searchInput);
-      }
-      setSearch({ isSearched: true, searchedPosts: searched });
-    }
+    searchItem(e, searchInput, posts, setSearch);
   }
 
   return (
     <>
       <h1>Posts</h1>
       {error !== null && <p>{error}</p>}
-      <button onClick={() => setAdd(true)}>add</button>
+      <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
           <label>Title:</label>
@@ -86,26 +61,26 @@ export default function Posts() {
       <button onClick={handleSearch}>search</button>
       <main className="posts-container">
         {!search.isSearched
-          ? posts.map((post) => {
-            return (
-              <Post
-                key={post.id}
-                post={post}
-                handledeleteItem={handledeleteItem}
-                setError={setError}
-              />
-            );
-          })
-          : search.searchedPosts.map((post) => {
-            return (
-              <Post
-                key={post.id + "b"}
-                post={post}
-                handledeleteItem={handledeleteItem}
-                setError={setError}
-              />
-            );
-          })}
+          ? posts.map((item) => {
+              return (
+                <Post
+                  key={item.id}
+                  item={item}
+                  handledeleteItem={handledeleteItem}
+                  setError={setError}
+                />
+              );
+            })
+          : search.searchedItems.map((item) => {
+              return (
+                <Post
+                  key={item.id + "b"}
+                  item={item}
+                  handledeleteItem={handledeleteItem}
+                  setError={setError}
+                />
+              );
+            })}
       </main>
     </>
   );

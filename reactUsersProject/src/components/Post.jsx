@@ -1,33 +1,20 @@
-import React, { useState, useContext } from "react";
-import { API_URL } from "../functions/API_URL";
-import apiRequest from "./apiRequest";
+import React, { useState } from "react";
 import Comments from "./Comments";
+import { edit } from "../functions/edit";
 
-export default function Post({ post, handledeleteItem, setError }) {
-  const [title, setTitle] = useState(post.title);
+export default function Post({ item, handledeleteItem, setError }) {
+  const [title, setTitle] = useState(item.title);
   const [isEdited, setIsEdited] = useState(false);
   const [showBody, setShowBody] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
-  async function handleSaveChanges() {
-    const url = `${API_URL}/posts/${post.id}`;
-    const updateOption = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-      }),
-    };
-    const result = await apiRequest(url, updateOption);
-    setError(result.errMsg);
-    setIsEdited(false);
+  function handleSaveChanges() {
+    edit("posts", item, title, setError, setIsEdited);
   }
 
   return (
-    <div className="post-div" key={post.id}>
-      <span>{post.id}</span>
+    <div className="post-div" key={item.id}>
+      <span>{item.id}</span>
       <br />
       {isEdited ? (
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -35,11 +22,11 @@ export default function Post({ post, handledeleteItem, setError }) {
         <label>{title}</label>
       )}
       <br />
-      <span>{showBody ? post.body : null}</span>
+      <span>{showBody ? item.body : null}</span>
 
       {showComments ? (
         <div className="post-comments">
-          <Comments postId={post.id} />
+          <Comments postId={item.id} />
         </div>
       ) : null}
 

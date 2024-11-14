@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import apiRequest from "../components/apiRequest";
-import { API_URL } from "../functions/API_URL";
 import Comment from "./Comment";
 import { handleDelete } from "../functions/delete";
 import { fetchData } from "../functions/fetchdata";
+import { addItem } from "../functions/add";
 
 export default function Comments({ postId }) {
   const [comments, setComments] = useState([]);
@@ -13,20 +12,6 @@ export default function Comments({ postId }) {
   const [commentingUsername, setCommentingUsername] = useState();
 
   useEffect(() => {
-    // const fetchCommentsData = async () => {
-    //   try {
-    //     const response = await fetch(`${API_URL}/comments?postId=${postId}`);
-    //     if (!response.ok) throw Error("Did not receive expected data");
-    //     const data = await response.json();
-    //     if (data.length === 0) setError("You have no comments");
-    //     else {
-    //       setComments(data);
-    //       setError(null);
-    //     }
-    //   } catch (err) {
-    //     setError(err.message);
-    //   }
-    // };
     (async () =>
       await fetchData(
         `comments?postId=${postId}`,
@@ -40,27 +25,14 @@ export default function Comments({ postId }) {
     handleDelete(comments, item, setComments, "comments", setError);
   }
 
-  async function addComment(e) {
-    e.preventDefault();
+  function addComment(e) {
     const newComment = {
       postId: parseInt(postId),
-      id: randomNum.toString(),
       name: commentingUsername,
       body: newBody,
     };
-
-    const postOption = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newComment),
-    };
-    const result = await apiRequest(`${API_URL}/comments`, postOption);
-    setError(result.errMsg);
-    setComments((prev) => [...prev, result.data]);
-    setAdd(false);
+    addItem(e, newComment, "comments", setError, setComments, setAdd);
   }
-
-  const randomNum = Math.floor(Math.random() * (1000000 - 500 + 1) - 500);
 
   return (
     <>
@@ -76,7 +48,7 @@ export default function Comments({ postId }) {
           );
         })}
       </main>
-      <button onClick={() => setAdd(true)}>add</button>
+      <button onClick={() => setAdd((prev) => !prev)}>add</button>
       {add && (
         <form>
           <label>Commenting user name:</label>

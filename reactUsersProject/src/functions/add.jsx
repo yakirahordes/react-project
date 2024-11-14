@@ -1,7 +1,7 @@
 import apiRequest from "../components/apiRequest";
 import { API_URL } from "../functions/API_URL";
 
-export async function add(
+export async function addItem(
   e,
   newObj,
   sectionType,

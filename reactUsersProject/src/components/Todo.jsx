@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { API_URL } from "../functions/API_URL";
 import apiRequest from "./apiRequest";
+import { edit } from "../functions/edit";
 
 export default function Todo({ item, deleteItem, setError }) {
   const [isChecked, setIsChecked] = useState(item.completed);
@@ -22,21 +23,11 @@ export default function Todo({ item, deleteItem, setError }) {
     const result = await apiRequest(url, updateOption);
     // setError(result.errMsg);
   }
-  async function handleSaveChanges() {
-    const url = `${API_URL}/todos/${item.id}`;
-    const updateOption = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-      }),
-    };
-    const result = await apiRequest(url, updateOption);
-    setError(result.errMsg);
-    setIsEdited(false);
+
+  function handleSaveChanges() {
+    edit("todos", item, title, setError, setIsEdited);
   }
+
   return (
     <div className="todo-div" key={item.id}>
       <span>{item.id}</span>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { API_URL } from "../functions/API_URL";
 import Todo from "../components/Todo";
-import apiRequest from "../components/apiRequest";
 import { handleDelete } from "../functions/delete";
 import { fetchData } from "../functions/fetchdata";
+import { addItem } from "../functions/add";
+import { searchItem } from "../functions/search";
 
 export default function Todos() {
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ export default function Todos() {
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState({
     isSearched: false,
-    searchedTodos: [],
+    searchedItems: [],
   });
   const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
@@ -31,48 +31,17 @@ export default function Todos() {
     handleDelete(todosList, item, setTodosList, "todos", setError);
   }
 
-  async function addTodo(e) {
-    // e.preventDefault();
-    // const randonId = Math.floor(Math.random() * (1000000 - 200)) + 200;
-    // const newTodo = {
-    //   id: randonId.toString(),
-    //   userId: parseInt(userId),
-    //   title: newTitle,
-    //   completed: false,
-    // };
-
-    // const postOption = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(newTodo),
-    // };
-    // const result = await apiRequest(`${API_URL}/todos`, postOption);
-    // setError(result.errMsg);
-    // setTodosList((prev) => [...prev, result.data]);
-    // setAdd(false);
+  function addTodo(e) {
     const newTodo = {
       userId: parseInt(userId),
       title: newTitle,
       completed: false,
     };
-    add(e, newTodo, "todos", setError, setTodos, setAdd);
+    addItem(e, newTodo, "todos", setError, setTodosList, setAdd);
   }
 
   function handleSearch(e) {
-    setSearch(todosList);
-    e.preventDefault();
-    if (searchInput !== "") {
-      let searched = todosList.filter((todo) =>
-        todo.title
-          .trim()
-          .toLowerCase()
-          .includes(searchInput.trim().toLowerCase())
-      );
-      if (searched.length === 0) {
-        searched = todosList.filter((todo) => todo.title === searchInput);
-      }
-      setSearch({ isSearched: true, searchedTodos: searched });
-    }
+    searchItem(e, searchInput, todosList, setSearch);
   }
 
   return (
@@ -106,7 +75,7 @@ export default function Todos() {
                 />
               );
             })
-          : search.searchedTodos.map((item) => {
+          : search.searchedItems.map((item) => {
               return (
                 <Todo
                   key={item.id + "b"}

@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { API_URL } from "../functions/API_URL";
-import apiRequest from "../components/apiRequest";
 import { handleDelete } from "../functions/delete";
 import Photo from "./Photo";
+import { addItem } from "../functions/add";
 
 export default function Photos({ albumId }) {
   const [photos, setPhotos] = useState([]);
@@ -11,6 +11,7 @@ export default function Photos({ albumId }) {
   const [add, setAdd] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [startIndex, setStartIndex] = useState(0);
+
   useEffect(() => {
     (async () => await fetchPhotosData())();
   }, []);
@@ -41,33 +42,20 @@ export default function Photos({ albumId }) {
       setError(err.message);
     }
   };
+
   async function handleDeletePhoto(photoItem) {
     handleDelete(photos, photoItem, setPhotos, "photos", setError);
-    console.log(photoItem);
   }
 
-  async function addPhoto(e) {
-    e.preventDefault();
+  function addPhoto(e) {
     const newPhoto = {
       albumId: parseInt(albumId),
-      id: randomNum.toString(),
       title: newTitle,
       url: photoAddress,
       thumbnailUrl: photoAddress,
     };
-
-    const postOption = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newPhoto),
-    };
-    const result = await apiRequest(`${API_URL}/photos`, postOption);
-    setError(result.errMsg);
-    setPhotos((prev) => [...prev, result.data]);
-    setAdd(false);
+    addItem(e, newPhoto, "photos", setError, setPhotos, setAdd);
   }
-
-  const randomNum = Math.floor(Math.random() * (1000000 - 5000 + 1) + 5000);
 
   return (
     <>
